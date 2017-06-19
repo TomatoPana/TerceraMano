@@ -29,7 +29,11 @@ public class imagesView {
     @PostConstruct
     public void init() {
         images = new ArrayList<String>();
-        images.add("imagen1.jpg");
+        images.add("imagen3.jpg");
+        images.add("imagen2.png");
+        images.add("imagen1.jpg"); 
+        images.add("imagen3.png");
+        images.add("imagen5.png");
     }
  
     public List<String> getImages() {
