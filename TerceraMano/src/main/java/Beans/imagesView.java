@@ -11,16 +11,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import javax.faces.bean.ViewScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.inject.Named;
 /**
  *
  * @author alanj
  */
 
 @ManagedBean
+@Named(value = "imagesView")
 @ViewScoped
 public class imagesView {
      
@@ -28,7 +26,7 @@ public class imagesView {
      
     @PostConstruct
     public void init() {
-        images = new ArrayList<String>();
+        images = new ArrayList<>();
         images.add("imagen1.jpg");
     }
  
