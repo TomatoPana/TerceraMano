@@ -18,14 +18,11 @@
             <p:layout fullPage="true">
 
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Header
+                    Plataforma Pa' Donar
                 </p:layoutUnit>
 
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    Footer
-                </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                <!--<p:layoutUnit position="west" size="175" header="Left" collapsible="true">
                     <p:menu>
                         <p:submenu label="Resources">
                             <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
@@ -36,10 +33,31 @@
                         </p:submenu>
 
                     </p:menu>
-                </p:layoutUnit>
+                </p:layoutUnit>-->
 
                 <p:layoutUnit position="center">
-                    Welcome to PrimeFaces
+                    <h:form>
+                        <p:panel id="panel" header="Inicio de sesión">
+
+                            <!-- <p:messages id="msgs" /> -->
+                            <h:panelGrid columns="3" cellpadding="5">
+                                <p:outputLabel for="email" value="Correo electrónico:" />
+                                <p:inputText id="email" value="#{userView.email}" required="true" label="Correo electrónico">
+                                    <f:validateLength minimum="3" />
+                                </p:inputText>
+                                <p:message for="email" display="icon" />
+
+                                <p:outputLabel for="password" value="Contraseña:" />
+                                <p:inputText id="password" value="#{userView.password}" label="Contraseña" required="true">
+                                    <f:validateLength minimum="3" />
+                                </p:inputText>
+                                <p:message for="password" display="icon" />
+
+                            </h:panelGrid>
+
+                            <p:commandButton value="Iniciar sesión" update="panel" actionListener="#{userView.save}" icon="ui-icon-check" />
+                        </p:panel>
+                    </h:form>
                 </p:layoutUnit>
 
             </p:layout>
