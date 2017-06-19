@@ -5,7 +5,7 @@
  */
 package Beans;
 
-import Database.Users;
+import com.ceti.terceramano.Users;
 import java.util.Collection;
 import java.util.Date;
 import javax.faces.application.FacesMessage;

@@ -39,12 +39,11 @@
                 <h:form id="login" >
                     <h:panelGrid columns="2" cellpadding="5">
                         <p:outputLabel>Correo: </p:outputLabel>
-                        <!-- QUITAR LOS COMENTARIOS DE ABAJO, -->
-                        <!--<p:inputText value="#{LoginBean.username}" />-->
+                        <p:inputText value="#{LoginBean.username}" />
                         <p:outputLabel>Contraseña: </p:outputLabel>
-                        <!--<p:password value="#{LoginBean.password}" />-->
+                        <p:password value="#{LoginBean.password}" />
                         <h:commandButton action = "listaProductos" value = "Ingresar" />
-                        <!--<p:commandButton value="Iniciar Sesión" actionListener="#{LoginBean.login()}" ajax="true" ></p:commandButton>-->
+                        <p:commandButton value="Iniciar Sesión" actionListener="#{LoginBean.login()}" ajax="true" ></p:commandButton>
                     </h:panelGrid>
                 </h:form>
 

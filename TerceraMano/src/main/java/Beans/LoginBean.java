@@ -5,7 +5,7 @@
  */
 package Beans;
 
-import Database.Users;
+import com.ceti.terceramano.Users;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -81,7 +81,7 @@ public class LoginBean {
         } else {
             
             context.getExternalContext().getSessionMap().put("user", username);
-            Database.Users usuario = (Database.Users) results.get(0);
+            Users usuario = (Users) results.get(0);
             context.getExternalContext().getSessionMap().put("id", usuario.getIdusers());
             try {
                 context.getExternalContext().redirect("/TerceraMano/faces/start.xhtml");

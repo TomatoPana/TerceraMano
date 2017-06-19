@@ -5,7 +5,7 @@
  */
 package Beans;
 
-import Database.Object1;
+import com.ceti.terceramano.Object1;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
