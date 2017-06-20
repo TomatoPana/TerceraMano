@@ -56,7 +56,7 @@ public class Object1 implements Serializable {
     @NotNull
     @Column(name = "org_owner")
     private int orgOwner;
-
+    
     public Object1() {
     }
 
@@ -74,7 +74,7 @@ public class Object1 implements Serializable {
     public Integer getIdobject() {
         return idobject;
     }
-
+    
     public void setIdobject(Integer idobject) {
         this.idobject = idobject;
     }
@@ -110,7 +110,7 @@ public class Object1 implements Serializable {
     public void setOrgOwner(int orgOwner) {
         this.orgOwner = orgOwner;
     }
-
+     
     @Override
     public int hashCode() {
         int hash = 0;

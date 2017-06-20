@@ -7,9 +7,6 @@ package Beans;
 
 import com.ceti.terceramano.Users;
 import javax.faces.application.FacesMessage;
-import javax.inject.Named;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -17,12 +14,8 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author darik
+ * @author USUARIO
  */
-
-@ManagedBean
-@Named(value = "RegistroBean")
-@SessionScoped
 public class RegistroBean {
     private Integer id;
     private String userName;
@@ -74,7 +67,7 @@ public class RegistroBean {
     public void registro() {
         if(password.equals(confirmPassword)){
             //System.out.println("contraseñas diferentes");
-            EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "persistence" );
+            EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "com.ceti_TerceraMano_war_1.0-SNAPSHOTPU" );
             EntityManager entitymanager = emfactory.createEntityManager();
             entitymanager.getTransaction().begin();
                 

@@ -15,52 +15,54 @@
         <p:layoutUnit position="north">
             <h2 align="center" style="margin: 0px;  background-color: slategray; color: white">TerceraMano</h2>
         </p:layoutUnit>
-        
+
         <div class="ui-g"  >
             <div class="ui-g-12">
                 <h:form id="menuForm" >
                     <p:menubar >  
                         <p:menuitem value="Lista de productos" action="listaProductos" icon="ui-icon-pencil"/>
-                        <p:menuitem value="Mis productos" url="#" icon="ui-icon-home"/>
+                        <p:menuitem value="Mis donaciones" action = "misDonaciones" icon="ui-icon-home"/>
+                        <p:menuitem value="Mis productos" action = "misProductos" icon="ui-icon-home"/>
                         <p:menuitem value="Agregar producto" url="#" onclick="PF('agregarProd').show();" icon="ui-icon-home"/>
+                        <p:menuitem value="Cerrar sesión" actionListener="#{LoginBean.logout()}" ajax="false"  icon="ui-icon-home"/>
                     </p:menubar>    
                 </h:form>
             </div>
         </div>
-        
-        
+
+
         <div class="ui-g-12 ui-md-10 ui-g-nopad" style="margin-top:15px">
             <!-- TODO EL CONTENIDO -->
             <div class="ui-g-12 ui-g-nopad">
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-12">
                         <h:form>
-                            <p:dataTable var="test" value="#{filterBean.categorias}">
+                            <p:dataTable var="q" widgetVar="misDonaciones" value="#{ObjetosBean.misObjetos}">
                                 <p:column headerText="Producto">
-                                    <h:outputText value="#{test.categoria}" />
+                                    <h:outputText value="#{q.nameObject}" />
                                 </p:column>
 
                                 <p:column headerText="Descripción">
-                                    <h:outputText value="#{test.quiz.creationDate}" />
+                                    <h:outputText value="#{q.description}" />
                                 </p:column>
-                                
+
                             </p:dataTable>
                         </h:form>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <p:dialog header="Agregar nuevo producto" widgetVar="agregarProd" modal="true" >
             <h:form>
                 <p:messages id="signUpMessagge" showDetail="true" autoUpdate="true" closable="true" />
                 <h:panelGrid columns="1" cellpadding="5">
                     <p:outputLabel>Nombre del producto:</p:outputLabel>
-                    <p:inputText value="#{RegistroBean.nombre}" />
+                    <p:inputText value="#{ObjetosBean.obj.nameObject}"/>
                     <p:outputLabel>Descripción:</p:outputLabel>
-                    <p:inputTextarea rows="10" cols="50" completeMethod="#{inputTextareaView.completeArea}" queryDelay="750" minQueryLength="4" />
-                    
-                    <p:commandButton value="Agregar producto" actionListener="#{RegistroBean.registro}" ajax="true"></p:commandButton>           
+                    <p:inputTextarea rows="10" cols="50"  queryDelay="750" minQueryLength="4" value="#{ObjetosBean.obj.description}"/>
+
+                    <p:commandButton value="Agregar producto" actionListener="#{ObjetosBean.saveObj()}" ajax="true"></p:commandButton>           
                 </h:panelGrid>
             </h:form>
         </p:dialog>

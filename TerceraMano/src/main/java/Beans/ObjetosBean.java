@@ -6,14 +6,14 @@
 package Beans;
 
 import com.ceti.terceramano.Object1;
+import com.ceti.terceramano.Users;
+import Beans.Adquiridos;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,10 +22,8 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Gustavo
+ * @author USUARIO
  */
-@ManagedBean
-@ViewScoped
 public class ObjetosBean {
 
   
@@ -33,6 +31,7 @@ public class ObjetosBean {
     private List<Object1> lista;
     private List<Object1> misObjetos;
     private List<Object1> misDonaciones;
+    
    
 
     public List<Object1> getMisObjetos() {
@@ -71,7 +70,11 @@ public class ObjetosBean {
      */
     public ObjetosBean() {
     }
-    
+    /**
+     * function init() Inicializa los elementos del la clase Objetos Beans
+     * @param
+     * @return void
+     */
     @PostConstruct
     public void init()
     {
@@ -83,10 +86,21 @@ public class ObjetosBean {
             lista = new ArrayList();
             misDonaciones = new ArrayList();
             misObjetos = new ArrayList();
-            EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "persistence" );
+            EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "com.ceti_TerceraMano_war_1.0-SNAPSHOTPU" );
             EntityManager entitymanager = emfactory.createEntityManager();
             Query query = entitymanager.createNamedQuery("Object1.findAll", Object1.class);
+            Query quer2 = entitymanager.createNamedQuery("Users.findAll",Users.class);
+            List<Users> nombres = quer2.getResultList();
             List<Object1> aux = query.getResultList();
+            Adquiridos adq = new Adquiridos();
+            for(Users u: nombres){
+                for(Object1 x: aux){
+                    if(x.getIdobject() == u.getIdusers()){
+                        adq.setAdquiridos(u.getName());
+                    }
+                }
+            }
+            
             for(Object1 x: aux)
             {
                 if(x.getNewOwner()==null)
@@ -101,6 +115,8 @@ public class ObjetosBean {
                 if(x.getNewOwner()== userId)
                 {
                     misObjetos.add(x);
+                    
+                    
                 }
             }
 
@@ -120,14 +136,14 @@ public class ObjetosBean {
         FacesContext context = FacesContext.getCurrentInstance();
         Integer userId = (Integer) context.getExternalContext().getSessionMap().get("id");
         obj.setOrgOwner(userId);
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "persistence" );
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "com.ceti_TerceraMano_war_1.0-SNAPSHOTPU" );
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
         entitymanager.persist(obj);
         entitymanager.getTransaction().commit();
         entitymanager.close();
         try {
-            context.getExternalContext().redirect("/TerceraMano/faces/start.xhtml");
+            context.getExternalContext().redirect("/TerceraMano/faces/listaProductos.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -137,7 +153,7 @@ public class ObjetosBean {
     {
         FacesContext context = FacesContext.getCurrentInstance();
         Integer userId = (Integer) context.getExternalContext().getSessionMap().get("id");
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "persistence" );
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "com.ceti_TerceraMano_war_1.0-SNAPSHOTPU" );
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
         Object1 x = entitymanager.find(Object1.class, id);
@@ -147,7 +163,7 @@ public class ObjetosBean {
         query.executeUpdate();
         entitymanager.getTransaction().commit();
         try {
-            context.getExternalContext().redirect("/TerceraMano/faces/start.xhtml");
+            context.getExternalContext().redirect("/TerceraMano/faces/listaProductos.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
         }

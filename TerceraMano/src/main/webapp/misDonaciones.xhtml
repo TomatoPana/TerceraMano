@@ -1,5 +1,10 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -8,7 +13,7 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Lista de productos</title>
+        <title>Mis productos</title>
     </h:head>
 
     <h:body style="background-color: #333333">
@@ -20,7 +25,7 @@
             <div class="ui-g-12">
                 <h:form id="menuForm" >
                     <p:menubar >  
-                        <p:menuitem value="Lista de productos" url="listaProductos" icon="ui-icon-pencil"/>
+                        <p:menuitem value="Lista de productos" action="listaProductos" icon="ui-icon-pencil"/>
                         <p:menuitem value="Mis donaciones" action = "misDonaciones" icon="ui-icon-home"/>
                         <p:menuitem value="Mis productos" action = "misProductos" icon="ui-icon-home"/>
                         <p:menuitem value="Agregar producto" url="#" onclick="PF('agregarProd').show();" icon="ui-icon-home"/>
@@ -37,7 +42,7 @@
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-12">
                         <h:form>
-                            <p:dataTable var="q" value="#{ObjetosBean.lista}">
+                            <p:dataTable var="q" widgetVar="misDonaciones" value="#{ObjetosBean.misDonaciones}">
                                 <p:column headerText="Producto">
                                     <h:outputText value="#{q.nameObject}" />
                                 </p:column>
@@ -45,18 +50,10 @@
                                 <p:column headerText="Descripción">
                                     <h:outputText value="#{q.description}" />
                                 </p:column>
-
-                                <p:column headerText="Publicado por:">
-                                    <h:outputText value="#{q.orgOwner}" ></h:outputText>
+                                
+                                <p:column headerText="Adquirido por">
+                                    <h:outputText value="#{q.newOwner}" />
                                 </p:column>
-
-                                <p:column headerText="Adquirir">
-                                    <p:commandLink actionListener="#{ObjetosBean.mine(q.idobject)}" >
-                                        <h:outputText value="ADQUIRIR" />
-                                    </p:commandLink>
-                                </p:column>
-
-
 
                             </p:dataTable>
                         </h:form>

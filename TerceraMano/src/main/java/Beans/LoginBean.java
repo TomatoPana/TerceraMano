@@ -10,22 +10,16 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.inject.Named;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-
 /**
  *
- * @author Gustavo
+ * @author USUARIO
  */
-@ManagedBean
-@Named(value = "LoginBean")
-@SessionScoped
+
 public class LoginBean {
 
     /**
@@ -59,7 +53,7 @@ public class LoginBean {
 
     public String login() {
         FacesContext context = FacesContext.getCurrentInstance();
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "persistence" );
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "com.ceti_TerceraMano_war_1.0-SNAPSHOTPU" );
         EntityManager entitymanager = emfactory.createEntityManager();
         
         Query query = entitymanager.createNamedQuery("Users.findByUserName", Users.class);
@@ -84,7 +78,7 @@ public class LoginBean {
             Users usuario = (Users) results.get(0);
             context.getExternalContext().getSessionMap().put("id", usuario.getIdusers());
             try {
-                context.getExternalContext().redirect("/TerceraMano/faces/start.xhtml");
+                context.getExternalContext().redirect("/TerceraMano/faces/listaProductos.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -97,7 +91,7 @@ public class LoginBean {
         context.getExternalContext().getSessionMap().remove("user");
         context.getExternalContext().getSessionMap().remove("id");
         try {
-                context.getExternalContext().redirect("/TerceraMano");
+                context.getExternalContext().redirect("/TerceraMano/faces/index.xhtml");
             } catch (IOException ex) {
                 Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
             }

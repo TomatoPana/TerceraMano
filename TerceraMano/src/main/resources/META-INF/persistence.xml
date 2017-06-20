@@ -4,10 +4,8 @@
     <jta-data-source>java:app/TerceraMano</jta-data-source>
     <class>com.ceti.terceramano.Object1</class>
     <class>com.ceti.terceramano.Users</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="eclipselink.jdbc.user" value="root"/>
-      <property name="eclipselink.jdbc.password" value="rootroot"/>
     </properties>
   </persistence-unit>
 </persistence>
